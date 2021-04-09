@@ -35,7 +35,7 @@ func main() {
 		q.Add("network", env.GetNonEmpty("NETWORK"))
 		q.Add("address", row[0])
 		q.Add("amount", row[1])
-		q.Add("timestamp", fmt.Sprint("%l", time.Now().Unix()))
+		q.Add("timestamp", fmt.Sprintf("%d", time.Now().Unix()))
 		q.Add("signature", signer.Sign([]byte(q.Encode())))
 		req.URL.RawQuery = q.Encode()
 
