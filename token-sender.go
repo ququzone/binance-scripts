@@ -36,8 +36,7 @@ func main() {
 		q.Add("asset", env.GetNonEmpty("ASSET"))
 		q.Add("network", env.GetNonEmpty("NETWORK"))
 		q.Add("timestamp", fmt.Sprintf("%d000", time.Now().Unix()))
-		q.Add("signature", signer.Sign([]byte(q.Encode())))
-		req.URL.RawQuery = q.Encode()
+		req.URL.RawQuery = q.Encode() + "&signature=" + signer.Sign([]byte(q.Encode()))
 
 		req.Header.Add("X-MBX-APIKEY", env.GetNonEmpty("API_KEY"))
 
