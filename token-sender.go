@@ -31,11 +31,11 @@ func main() {
 			log.Fatalf("new http request error: %v", err)
 		}
 		q := req.URL.Query()
-		q.Add("asset", env.GetNonEmpty("ASSET"))
-		q.Add("network", env.GetNonEmpty("NETWORK"))
 		q.Add("address", row[0])
 		q.Add("amount", row[1])
-		q.Add("timestamp", fmt.Sprintf("%d", time.Now().Unix()))
+		q.Add("asset", env.GetNonEmpty("ASSET"))
+		q.Add("network", env.GetNonEmpty("NETWORK"))
+		q.Add("timestamp", fmt.Sprintf("%d000", time.Now().Unix()))
 		q.Add("signature", signer.Sign([]byte(q.Encode())))
 		req.URL.RawQuery = q.Encode()
 
