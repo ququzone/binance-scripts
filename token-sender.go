@@ -52,6 +52,6 @@ func main() {
 		if resp.StatusCode != 200 {
 			log.Fatalf("submit withdraw request error: %v", string(body))
 		}
-		log.Printf("Request %d withdraw successful\n", i)
+		log.Printf("Request %d withdraw successful: %s\n", i, string(body))
 	}
 }
